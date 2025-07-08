@@ -175,9 +175,8 @@
 }
 
 .card-body img {
-	width: 100%;
+	width: 250px;
 	height: 250px;
-	object-fit: cover;
 	border-radius: 8px;
 }
 .card-popup-box {
@@ -209,7 +208,7 @@
 }
 .card-popup-box div {
 	color: var(--color-text-opacity);
-	font-size: 0.8125rem;
+	font-size: 0.7125rem;
 	font-weight: 700;
 	line-height: 1.63;
 	letter-spacing: 1.63px;
@@ -218,7 +217,7 @@
 }
 .card-popup-box h3 {
 	color: var(--color-headings);
-	font-size: 1.3125rem;
+	font-size: 1.2125rem;
 	letter-spacing: -0.5px;
 	font-weight: 700;
 	margin-bottom: 0;

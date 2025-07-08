@@ -11,12 +11,20 @@ const modalOpen = "[data-open]";
 const modalClose = "[data-close]";
 const isVisible = "is-Visible";
 
+const dataFilter = "[data-filter]";
+const portfolioData = "[data-item]";
+
 const root = document.documentElement;
 
 // Theme
 const toggleTheme = document.querySelector(themeTab);
 const switcher = document.querySelectorAll(switcherBtn);
 const currentTheme = localStorage.getItem(theme);
+
+// portfolio
+const filterLink = document.querySelectorAll(dataFilter);
+const portfolioItems = document.querySelectorAll(portfolioData);
+const searchBox = document.querySelector("#search");
 
 // Modal
 const openModal = document.querySelectorAll(modalOpen);
@@ -66,6 +74,34 @@ for (const element of switcher) {
 		const toggle = this.dataset.toggle;
 		setActive(element, switcherBtn);
 		setTheme(toggle);
+	});
+}
+
+searchBox.addEventListener("keyup", (e) => {
+	const searchInput = e.target.value.toLowerCase().trim();
+
+	portfolioItems.forEach((card) => {
+		if (card.dataset.item.includes(searchInput)) {
+			card.style.display = "block";
+		} else {
+			card.style.display = "none";
+		}
+	});
+});
+
+for (const link of filterLink) {
+	link.addEventListener("click", function () {
+		setActive(link, ".filter-link");
+		const filter = this.dataset.filter;
+		portfolioItems.forEach((card) => {
+			if (filter === "all") {
+				card.style.display = "block";
+			} else if (card.dataset.item === filter) {
+				card.style.display = "block";
+			} else {
+				card.style.display = "none";
+			}
+		});
 	});
 }
 

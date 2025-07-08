@@ -49,6 +49,10 @@ button {
 	outline: none;
 }
 
+img {
+	object-fit: cover;
+	width: 100%;
+}
 .container,
 .container-fluid {
 	width: 100%;
