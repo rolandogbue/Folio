@@ -9,7 +9,7 @@ const active = "active";
 
 const modalOpen = "[data-open]";
 const modalClose = "[data-close]";
-const isVisible = "is-Visible";
+const isVisible = "is-visible";
 
 const dataFilter = "[data-filter]";
 const portfolioData = "[data-item]";
@@ -30,11 +30,11 @@ const searchBox = document.querySelector("#search");
 const openModal = document.querySelectorAll(modalOpen);
 const closeModal = document.querySelectorAll(modalClose);
 
-const setActive = (element, selector) => {
+const setActive = (elm, selector) => {
 	if (document.querySelector(`${selector}.${active}`) !== null) {
 		document.querySelector(`${selector}.${active}`).classList.remove(active);
 	}
-	element.classList.add(active);
+	elm.classList.add(active);
 };
 
 const setTheme = (val) => {
@@ -69,10 +69,10 @@ toggleTheme.addEventListener("click", function () {
 	}
 });
 
-for (const element of switcher) {
-	element.addEventListener("click", function () {
+for (const elm of switcher) {
+	elm.addEventListener("click", function () {
 		const toggle = this.dataset.toggle;
-		setActive(element, switcherBtn);
+		setActive(elm, switcherBtn);
 		setTheme(toggle);
 	});
 }
@@ -105,16 +105,33 @@ for (const link of filterLink) {
 	});
 }
 
-// Full Site Modal "open buttons"
-for (const element of openModal) {
-	element.addEventListener("click", function () {
+// Modal/Full Site Modal "open buttons"
+openModal.forEach((elm) => {
+	elm.addEventListener("click", function () {
 		const modalId = this.dataset.open;
 		document.getElementById(modalId).classList.add(isVisible);
 	});
-}
+});
 
-for (const element of closeModal) {
-	element.addEventListener("click", function () {
-		this.parentElement.parentElement.classList.remove(isVisible);
+// "Close buttons"
+closeModal.forEach((elm) => {
+	elm.addEventListener("click", function () {
+		this.closest(".is-visible").classList.remove(isVisible);
 	});
-}
+});
+
+// Modal
+document.addEventListener("click", (e) => {
+	// console.log(e.target, document.querySelector(".modal.is-visible"));
+	if (e.target === document.querySelector(".modal.is-visible")) {
+		document.querySelector(".modal.is-visible").classList.remove(isVisible);
+	}
+});
+
+document.addEventListener("keyup", (e) => {
+	console.log(e.key);
+	if (e.key === "Escape") {
+		document.querySelector(".modal.is-visible").classList.remove(isVisible);
+	}
+});
+
