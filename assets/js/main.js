@@ -37,6 +37,7 @@ const setActive = (elm, selector) => {
 	elm.classList.add(active);
 };
 
+// set theme 
 const setTheme = (val) => {
 	if (val === dark) {
 		root.setAttribute(dataTheme, dark);
@@ -76,7 +77,7 @@ for (const elm of switcher) {
 		setTheme(toggle);
 	});
 }
-
+// search function 
 searchBox.addEventListener("keyup", (e) => {
 	const searchInput = e.target.value.toLowerCase().trim();
 
@@ -134,4 +135,3 @@ document.addEventListener("keyup", (e) => {
 		document.querySelector(".modal.is-visible").classList.remove(isVisible);
 	}
 });
-
